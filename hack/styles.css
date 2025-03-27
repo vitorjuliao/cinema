@@ -5,33 +5,29 @@
     box-sizing: border-box;
 }
 
-/* Definindo as cores principais */
+/* Definição de cores */
 :root {
     --vermelho: #d32f2f;
     --preto: #212121;
     --branco: #ffffff;
 }
 
-/* Corpo e fontes */
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: var(--preto);
     color: var(--branco);
-}
-
-header {
-    background-color: var(--vermelho);
-    padding: 20px;
     text-align: center;
 }
 
-header .logo h1 {
-    font-size: 2rem;
-    color: var(--branco);
+/* Cabeçalho */
+header {
+    background-color: var(--vermelho);
+    padding: 20px;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     margin-top: 10px;
 }
 
@@ -46,74 +42,86 @@ nav ul li a {
     font-size: 1.1rem;
 }
 
-/* Contêiner dos filmes */
-.filmes-em-cartaz {
-    padding: 40px;
+/* Estilizando o carrossel */
+.filmes-wrapper {
+    overflow: hidden;
+    max-width: 900px;
+    margin: auto;
+    position: relative; /* Permite que as setas sejam posicionadas corretamente */
 }
 
 .filmes-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px;
 }
 
 .filme {
-    background-color: var(--preto);
-    border: 1px solid var(--vermelho);
-    width: 300px;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
+    min-width: 280px;
     text-align: center;
 }
 
 .filme img {
     width: 100%;
-    height: 300px; /* Tamanho fixo para as imagens */
+    height: 300px;
+    border-radius: 10px;
     object-fit: cover;
 }
 
-.informacoes-filme {
-    padding: 15px;
-}
-
-.informacoes-filme h3 {
-    font-size: 1.5rem;
-    color: var(--vermelho);
-}
-
-.informacoes-filme p {
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
 button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    border: none;
     background-color: var(--vermelho);
     color: var(--branco);
-    border: none;
-    padding: 10px 20px;
+    font-size: 1rem;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 1.1rem;
-    margin-top: 10px;
 }
 
 button:hover {
     background-color: #b71c1c;
 }
 
-/* Alinhamento dos filmes */
-.filme.esquerda {
-    order: 1;
+/* 🔴 Setas nas extremidades esquerda e direita com largura de 130% 🔴 */
+.setas-container {
+    display: flex;
+    justify-content: space-between; /* As setas ficam nas extremidades */
+    position: absolute; /* Posição absoluta para se mover fora do fluxo normal */
+    top: 50%; /* Coloca as setas na parte vertical central */
+    width: 100%; /* Usando toda a largura disponível */
+    transform: translateY(-50%); /* Centraliza as setas verticalmente */
+    z-index: 10; /* Garante que as setas apareçam acima dos outros elementos */
 }
 
-.filme.centro {
-    order: 2;
-    text-align: center;
+.seta {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--vermelho);
+    width: 50px; /* Definindo um tamanho fixo para as setas */
+    height: 50px;
 }
 
-.filme.direita {
-    order: 3;
+.seta:hover {
+    background: var(--vermelho);
+    color: var(--branco);
+}
+
+/* Ajusta a seta da esquerda para a extrema esquerda */
+.seta-esquerda {
+    position: absolute;
+    left: 0; /* Posiciona a seta no começo da página */
+}
+
+/* Ajusta a seta da direita para a extrema direita */
+.seta-direita {
+    position: absolute;
+    right: 0; /* Posiciona a seta no final da página */
 }
 
 /* Rodapé */
